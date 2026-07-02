@@ -1,0 +1,250 @@
+/* Princess Paisley's Adventures
+   Version 0.1.0
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(#87CEEB, #dff4ff);
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ---------- Screens ---------- */
+
+.screen {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ---------- Menu ---------- */
+
+#menuScreen {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:
+        linear-gradient(#8fd3ff 0%, #cdeeff 55%, #8fd48f 56%, #71b971 100%);
+}
+
+h1 {
+    color: white;
+    font-size: 56px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,.35);
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 18px;
+    background: #ff69b4;
+    color: white;
+    font-size: 22px;
+    padding: 18px 34px;
+    transition: .2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+/* ---------- Event Screen ---------- */
+
+#eventScreen {
+    flex-direction: column;
+}
+
+.header {
+    background: white;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,.15);
+}
+
+.header h2 {
+    color: #444;
+}
+
+.stage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    background:
+        linear-gradient(#a8e2ff 0%, #dff6ff 55%, #c8f0c8 56%, #8fd08f 100%);
+}
+
+/* ---------- Princess ---------- */
+
+.princess {
+    width: 240px;
+    height: 420px;
+    position: relative;
+}
+
+/* Head */
+
+.head {
+    width: 95px;
+    height: 105px;
+    border-radius: 50%;
+    background: #ffd8c2;
+    position: absolute;
+    left: 72px;
+    top: 20px;
+}
+
+/* Hair */
+
+.hair {
+    position: absolute;
+    width: 130px;
+    height: 120px;
+    left: 55px;
+    top: 5px;
+    border-radius: 60px;
+    background: #7b4d24;
+    z-index: -1;
+}
+
+/* Crown */
+
+.crown {
+    position: absolute;
+    top: -5px;
+    left: 82px;
+    font-size: 42px;
+}
+
+/* Body */
+
+.body {
+    position: absolute;
+    top: 105px;
+    left: 62px;
+    width: 115px;
+    height: 245px;
+    background: hotpink;
+    clip-path: polygon(30% 0%,70% 0%,100% 100%,0% 100%);
+    border-radius: 20px;
+}
+
+/* Dress colors */
+
+.dressPink {
+    background: hotpink;
+}
+
+.dressBlue {
+    background: deepskyblue;
+}
+
+.dressPurple {
+    background: mediumpurple;
+}
+
+.dressGreen {
+    background: mediumseagreen;
+}
+
+/* ---------- Bottom Toolbar ---------- */
+
+.toolbar {
+    background: white;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    box-shadow: 0 -3px 10px rgba(0,0,0,.15);
+}
+
+/* ---------- Sparkles ---------- */
+
+.sparkle {
+    position: absolute;
+    font-size: 32px;
+    animation: twinkle 2s infinite;
+}
+
+.sparkle:nth-child(1){
+    left:25%;
+    top:20%;
+}
+
+.sparkle:nth-child(2){
+    right:25%;
+    top:30%;
+}
+
+.sparkle:nth-child(3){
+    left:45%;
+    bottom:18%;
+}
+
+@keyframes twinkle {
+
+    0%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+
+    100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:700px){
+
+    h1{
+        font-size:42px;
+    }
+
+    .princess{
+        transform:scale(.85);
+    }
+
+    button{
+        font-size:18px;
+        padding:14px 22px;
+    }
+
+}
