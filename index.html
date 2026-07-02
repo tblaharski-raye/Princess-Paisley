@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Princess Paisley’s Adventures</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f5f5ff;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+#gameArea {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-top: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 450px;
+}
+
+.itemBar {
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- EVENT SELECT -->
+<div id="eventScreen" class="screen active">
+    <h1>Princess Paisley’s Adventures</h1>
+    <h3>Select an Event</h3>
+
+    <button onclick="startEvent('ball')">🏰 Royal Ball</button>
+    <button onclick="startEvent('garden')">🌸 Garden Tea Party</button>
+    <button onclick="startEvent('ice')">❄️ Ice Ceremony</button>
+</div>
+
+<!-- DRESSING ROOM -->
+<div id="dressScreen" class="screen">
+    <h2>Dress Princess Paisley</h2>
+
+    <div id="gameArea">
+        <img id="bg" class="layer" style="z-index:0; width:100%; height:500px; object-fit:cover;">
+        <img id="body" class="layer" style="z-index:1;" src="princess_body.png">
+        <img id="dress" class="layer" style="z-index:2;">
+        <img id="hair" class="layer" style="z-index:3;">
+        <img id="crown" class="layer" style="z-index:4;">
+    </div>
+
+    <div class="itemBar">
+        <h3>Dresses</h3>
+        <button onclick="equip('dress','dress1.png')">Pink Dress</button>
+        <button onclick="equip('dress','dress2.png')">Blue Dress</button>
+
+        <h3>Hair</h3>
+        <button onclick="equip('hair','hair1.png')">Long Hair</button>
+        <button onclick="equip('hair','hair2.png')">Braided Hair</button>
+
+        <h3>Crowns</h3>
+        <button onclick="equip('crown','crown1.png')">Gold Crown</button>
+
+        <br><br>
+        <button onclick="goEvent()">✨ Ready for Event</button>
+    </div>
+</div>
+
+<!-- EVENT SCENE -->
+<div id="sceneScreen" class="screen">
+    <h2 id="eventTitle"></h2>
+
+    <div id="gameArea">
+        <img id="sceneBg" class="layer" style="z-index:0; width:100%; height:500px; object-fit:cover;">
+        <img id="sceneBody" class="layer" style="z-index:1;" src="princess_body.png">
+        <img id="sceneDress" class="layer" style="z-index:2;">
+        <img id="sceneHair" class="layer" style="z-index:3;">
+        <img id="sceneCrown" class="layer" style="z-index:4;">
+    </div>
+
+    <br>
+    <button onclick="backToMenu()">🏠 Back to Menu</button>
+</div>
+
+<script>
+
+let state = {
+    dress: "",
+    hair: "",
+    crown: "",
+    event: ""
+};
+
+function show(screen) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screen).classList.add('active');
+}
+
+function startEvent(type) {
+
+    state.event = type;
+
+    let bg = "";
+    let title = "";
+
+    if(type === "ball") {
+        bg = "bg_ballroom.png";
+        title = "Royal Ball";
+    }
+    if(type === "garden") {
+        bg = "bg_garden.png";
+        title = "Garden Tea Party";
+    }
+    if(type === "ice") {
+        bg = "bg_ice.png";
+        title = "Ice Ceremony";
+    }
+
+    document.getElementById("bg").src = bg;
+    document.getElementById("eventTitle").innerText = title;
+    document.getElementById("sceneBg").src = bg;
+
+    show("dressScreen");
+}
+
+function equip(slot, file) {
+    state[slot] = file;
+
+    if(slot === "dress") document.getElementById("dress").src = file;
+    if(slot === "hair") document.getElementById("hair").src = file;
+    if(slot === "crown") document.getElementById("crown").src = file;
+}
+
+function goEvent() {
+
+    document.getElementById("sceneDress").src = state.dress;
+    document.getElementById("sceneHair").src = state.hair;
+    document.getElementById("sceneCrown").src = state.crown;
+
+    show("sceneScreen");
+}
+
+function backToMenu() {
+    show("eventScreen");
+}
+
+</script>
+
+</body>
+</html>
